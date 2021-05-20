@@ -1,0 +1,817 @@
+Notes
+
+1. How to create a BoilerPlate React App ?
+- Use the CreateReactApp via https://reactjs.org/docs/create-a-new-react-app.html
+- To create a project, run:
+    npx create-react-app nameOfYourApp
+    cd my-app
+    npm start
+
+Note: In our case we used: 
+    npx create-react-app frontEnd   
+        > Why FrontEnd ? Because we React is the frontEnd 
+        > Once finished, it will create a boilerPlate React App in a folder called "frontend"
+
+2. How to start the application once CreateReactApp finishes ?
+- Go to the frontend folder
+- Type in:
+    npm run
+- Go to browser under http://localhost:3000
+
+3. Where is your starting point ?
+- It is the index.html file located in frontend > public 
+- However, the starting point for react Apps is "index.js"  located in frontend > src
+
+4. Regular syntax vs Arrow functions.
+Both do the same thing
+Regular Functional component  syntax:
+
+function App() {
+  return (
+    <>
+      <h1>Welcome to ProShop</h1>
+    </>
+  )
+}
+
+Arrow Functional Components
+const App = () => {
+  return (
+    <>
+      <h1>Welcome to ProShop</h1>
+    </>
+  )
+}
+
+Q5. What are react Components ? 
+- Components are independent and reusable bits of code 
+- Server as JS Functions
+- Return HTML via a render function
+- Comes in two types : Class components & Function Components
+
+Q5a. What is Class Component ?
+- Class component must extend React.Component
+- Gives your component access to React.Components via inheritance
+- Requires a render() method, this method returns HTML
+Ex: 
+class Car extends React.Component {
+  render() {
+    return <h2> Hello World </h2>
+  }
+}
+To use this component we use it a file like this 
+<Car> </Car> 
+Or
+ReactDom.render(<Car />, document.getElementById('root'))
+
+Q5b. What is Function Component ? 
+- Returns HTML
+Ex: 
+function Car() {
+    return <h2>Hi, I AM car</h2>
+}
+
+To Display Car:
+ReactDom.render(<Car/>, document.getElementById('root'))
+
+
+Q6. What is React BootStrap ?
+- Need to install Bootstrap first 
+
+Q7. What is BootSwatch ?
+- Free themes for bootstrap 
+- Bootstrap files but customized to have different themes, colors, fonts ..etc
+
+8. How to install BootSwatch and use them from Bootswatch ?
+- Download theme on bootswatch under "bootstrap.min"
+- Drag and Drop to src folder 
+- Go into index.js and import using:
+    import './bootstrap.min.css'
+  
+9. Note: Once you have bootstrap installed, Now you can install React-BootStrap
+
+10. How to install React-BootStrap ?
+- Note: Make sure you follow step 8 first and install bootstrap theme
+- Run: 
+  npm i react-bootstrap
+
+Q11. What is a container ? 
+- Similar to Components
+
+Q12. How to use Containers in App ? 
+- Import it in a file using {}
+Ex: import { Container } from 'react-bootstrap' // We import Containers from react-bootstrap
+
+Q13. What is cdnjs ?
+- It is Content Delivery Network for JS
+- Provides contents like fonts, libraries ..etc for websites
+
+Q14. Note: For this app, we use "font awesome", we use cdnJS to import it
+
+15. How to use 'font awesome' into application ?
+- Go to cdnJS
+- Type in font awesome in search bar 
+- Copy link tag
+- Place in index.html in public folder 
+Ex: Check in index.html for this line "<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />"
+- Why ? So we can use icon classes 
+- Now go to Header and add this line in:
+  <i className='fas fa-shopping-cart'></i>
+  <i className='fas fa-user'></i>
+
+Q16. When to use {} in import ? 
+- Basically when Component youre trying to import does NOT have "export default"
+Ex:
+import  { A } from './A'
+It only works if A contains a named export called A:
+export const A = 42
+export const myA = 43
+export const Something = 50
+
+Note: a module can only have ONE default export, but as many exports areyoud like
+
+
+Q17. How to access Properties in COmponents ? 
+- On the Component, place it inside the '()' 
+Note: Make sure that the Component calling it does have properties
+
+xQ18. What is destructuring ?
+- DeStructuring allows to unpack values from arrays, properties of objects  into
+distinct variable data and assigning to variables
+Ex: Array DeStructuring
+[x,y,z] = [10,20,30]
+console.log(x)
+console.log(y)
+
+
+Ex: Object DeStructuring
+({x,y} = {x:10, y:20})
+console.log(x)  // 10
+console.log(y)  // 20
+
+Q19. What is the difference between {}, ${}, {{}}
+Ex: value={product.rating} text={`${product.numReviews} reviews`} 
+Ex: style={{ color }}
+- {} : are special syntax in JSX. Used to evaluate JS Expression at compilation
+- ${}: are used template literals. Used when we have backticks ``
+- {{}}: are for fetching CSS
+
+Q20. Where do you get "fas fa-star", "fa-star-half-alt" & "far fa-star" from ?
+- Go to font awesome and search for star
+- Then you will see an Example: "<i class="fas fa-star"></i>"
+
+Q21. How to set default properties on a component ?
+- Create a defaultProps in the Component of choice
+- This will be enabled for all elements in the component
+Ex: 
+Rating.defaultProps = {
+  color: '#f8e825',
+}
+
+Q22. What is propTypes ?
+- PropTypes can type check if property has the correct format 
+Ex:
+Rating.propTypes = {
+  value: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+  color: PropTypes.string,
+}
+
+23. How to install react Router ?
+- Go to frontend Folder and type in:
+  npm i react-router-dom react-router-bootstrap
+
+Q24. What is BrowserRouter ? 
+- React Component
+- Used for doing client side routing with URL segments
+- Routes to different webpages of your applications
+Ex. Routing to home using '/' or  Product page using '/product'
+
+Q25. Why do we need to wrap the entire app in BrowserRouter ?
+- Because this is the entry point of the application ?
+- Where else would you put it ?
+
+Q26. What is the 'exact' keyword used in Route ? 
+<Route path='/' component={HomeScreen} exact />
+- Basically, whenever we type in /page1 or /page2, it will always forward to HomeScreen
+- We dont want that, instead we want to go to the homescreen if the user routes to '/' exactly
+- If you type in '/' in your application, you will only go to homescreen
+- If you type in 'http://localhost:3000/product/2', then it will NOT go to the homescreen
+
+Q27. What is the ':id' in '/product/:id'  ?
+- That is a place holder value which allows the user to route to any page dynamically
+Ex: /product/1  Or /product/2 Or /product/3
+
+28. NOTE !! Since this is SPA, we do NOT want to use 'a'  tags(i.e <a href></a>). We want to use 'Link' instead
+using bootstrap
+
+Q29. What is the difference between Link vs LinkContainer ?? 
+
+Q30. What happens when you type in a path which is not defined in the Router?
+Ex: http://localhost:3000/helloWorld
+- Brings up an empty Page with No components
+
+Q31. How does product page know which id is sent ?
+- Its in the URL being passed by the Router
+- Remember that in App.js we use <Route path='/product/:id' component={ProductScreen} />
+- Then we destructure and call it 'match'
+const ProductScreen = ({ match }) => {
+  const product = products.find((p) => p._id === match.params.id)
+  console.log('match: ' + match.params.hello)
+  return <div>{product.name}</div>
+}
+*** Wait how do you know its /product/1 or /product/2 ???
+- BECAUSE it is defined in the 'products.js' file in the HomeDirectory
+
+
+Q32. What is the 'fluid' keyword ?
+- Makes images/object NOT go past its container
+
+33. When do we use backticks ``?
+Ex:
+  <Rating value={product.rating} text={`${product.numReviews}`} />
+
+34. How to disable a button if there is no stock left ? 
+- This checks if the button has stock or not:
+<Button className='btn-block' type='button'disabled={product.countInStock === 0}
+
+Q35. Why do we need to use mongoose ?
+- Communicates between MongoDB and Backend Express server
+
+Q36. What is the purpose of the backend ?
+- Create controllers, models ..etc
+
+37. To get the data from the backend, we need to perform HTTP request like 'GET' 'POST' ..etc
+- Basically:
+GET   : Used for fetching data (Ex: /api/products)
+POST  : Used for adding data   (Ex: /api/products)
+PUT   : Used for updating data  (Ex: /api/products/25 .... Note: you need to have an id)
+DELETE : Used for delete data   (Ex: /api/products/25 .... Note: you need to have an id)
+
+::: For BackEnd
+38. How to initialize package.json 
+- Go to root folder and type in:
+  npm init
+- Follow the instructions
+- After this is completed, it will create a 'package.json' in the home folder
+
+Ex:
+package name: (mern_ecommerceapp) 
+version: (1.0.0) 
+description: MERN shopping cart app
+entry point: (index.js) server.js
+test command: 
+git repository: (https://github.com/timManas/MERN_eCommerceApp.git) 
+keywords: 
+author: 
+license: (ISC) MIT
+About to write to /Users/timmanas/ProgrammingProjects/MERNStack/MERN_eCommerceApp/package.json:
+
+{
+  "name": "mern_ecommerceapp",
+  "version": "1.0.0",
+  "description": "MERN shopping cart app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timManas/MERN_eCommerceApp.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/timManas/MERN_eCommerceApp/issues"
+  },
+  "homepage": "https://github.com/timManas/MERN_eCommerceApp#readme"
+}
+
+Q39. How to install express ? 
+- Make sure youre in the root folder
+- Type in:
+  npm i express
+
+40. Note !!! Our Entry point in Backend is server.js
+
+Q41. What is modules ? 
+- Backend is using Common JS 
+- FrontEnd is using ES Module (i.e using import syntax)
+
+Q42. How to run node backend Server ?
+- Type the following in the root folder:
+  node backend/server
+
+43. Instead of constantly having to type in "node backend/server" just to start up the server,
+we can create a script on the 'package.json' to start it
+Ex: 
+ "scripts": {
+    "start": "node backend/server"
+  },
+- This will allow you to run node server just using:
+  'npm start'
+
+
+44. How to start the frontEnd & BackEnd ?
+Note there are two process to start:
+1. FrontEnd:
+  - Go to frontend folder and type in: "npm start"
+
+2. BackEnd:
+  - Go to Root folder and type in: "npm start"
+
+
+45. What is axios ?
+- HTTP Library which is used to make HTTP request
+
+46. How to install axios ?
+- Go to frontend folder and type:
+  npm i axios
+
+47. Flow is 
+Client -> go to localhost:3000 -> Gets Website > Website makes HTTP request for products on backend > Backend sends product to Website Client
+
+48. What is state ? 
+- Global level state
+- Application level state (Component, form)
+
+Q49. What is the useState hook in react ? 
+- It is to use state in functional components
+- 
+Ex: const [products, setProducts] = useState([])
+"products" is what we want to call the state
+"setProducts" is the function we want to call to manipulate the state
+
+
+Q50. What is the useEffect hook in react ?
+- Makes a request to the backend
+- Runs as soon as the component loads
+
+51. How to create a proxy to connect from localhost:3000 to localhost:5000 ? 
+- Go to frontend package.json
+- Add in this line "proxy": "http://127.0.0.1:5000"
+- Restart frontEnd Server
+
+Q52. What is nodemon ?
+- Nodemon is a tool which constantly watches the server so we dont have to keep resetting it
+- If you dont use nodemon, you have keep restarting the server to pick up the changes
+
+Q53. What is concurrently ? 
+- Allows user to run both backend + frontend at the same time
+
+52. How to install nodemon ? 
+- Go to root and type in:
+npm i nodemon concurrently
+
+53. How to install as Dev Dependencies ?
+- Type in -D in npm install
+Ex: 
+npm i -D nodemon concurrently
+
+- After install, it should get add into Dev depenencies 
+Ex: 
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.6"
+  }
+
+
+54. How to use nodemon ? 
+- Install nodemon
+- Once install go to your package.json 
+- Go to the scripts and add in this line "server": "nodemon backend/server"
+Ex:
+ "scripts": {
+    "start": "node backend/server",
+    "server": "nodemon backend/server"
+  },
+
+55. How to run both Backend + FrontEnd at the same time
+- Install concurrently
+- Go to root package.json
+- Add this line to scripts:
+  "dev": "concurrently \"npm run server\" \"npm run client\""
+- Go to root and type in:
+  npm run dev
+Ex:
+  "scripts": {
+    "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+
+
+Q56. What is dotenv ? 
+- loads environment variables from .env file into process.environment
+
+57. How to install dotenv ?
+- Type:
+ npm i dotenv
+
+58. What is the purpose of the .env file ?
+- Store any keys, tokens, Ports of the environment on a file
+
+
+
+Q59. What is the ES6 Modules ? 
+- Note: require() uses the common JS syntax
+
+Q60. How to convert from common JS syntax to ES6 Module
+- Must have node v14.6+ a
+  > How to install latest version of node ?
+  > Use nvm ...Type in nvm install 14.51.1
+- Go to package.json
+- Add in "type": "module 
+Ex: 
+  "name": "mern_ecommerceapp",
+  "version": "1.0.0",
+  "description": "MERN shopping cart app",
+  "main": "server.js",
+  "type": "module",
+
+61.  If using ES6 module, you need to have ".js" in files 
+
+::: MongdoDB
+Q62. What is MongoDB Compass ?
+- Desktop GUI to managing your mongoDB database
+- Why use compass ? So we dont have to constantly log into Atlas and simply check compass
+
+63. How to connect through Compass ?
+- Go to MongoDb Atlas
+- Go to Clusters > connect > Connect using MongoDb Compass
+- Select "I have MongoDB Compass"  
+- Copy the connection string
+- Paste into MongoDB Compass
+  > Dont forget to change the password
+  > Dont forgett to change from /test to /DatabaseNAME_XYZ ...(Ex: /proshop)
+  Ex: mongodb+srv://timmanas:<password>@cluster0.9czdc.mongodb.net/proshop
+
+64. How to connect your application to MongoDB URI
+- Go to Atlas
+- Go to Clusters > connect > Connect your application
+- Copy connection string
+- Place inside .env file
+  > Dont forget to change the password
+  > Dont forget to change dbname
+Ex. MONGO_URI=mongodb+srv://timmanas:<Password>@cluster0.9czdc.mongodb.net/proshop?retryWrites=true&w=majority
+
+65. What is Mongoose ? 
+- Object modelling for NodeJS
+- Allows user to create models and schema  
+
+Q66. What is a Schema ? 
+- Represent the structure of a database
+- Also Schema = Database
+- Has three types of Schema: Physical, Logical and View Schema
+- Contains objects (ex. Tables, Columns, DataTypes, views, keys ..etc)
+
+67. How to install Mongoose ?
+- Go to root:
+  npm i mongoose
+
+68. Optional: Install colors package for your console logs
+- npm i colors
+
+69. What is a model ?
+- This represents the data model
+- Encapsultates business logic and data
+
+--> 70. How to prepare Data to be imported to MongoDB ?
+Note: Make sure to remove the _id in the product.js first
+Why ? Because when data is entered into mongoDB, mongoDB automatically
+assigns an _id to it
+
+71. What is bcryptJS ?
+- Hashes your password
+
+70. How to install bcryptjs ?
+- npm i bcryptjs
+
+73. How to hash passwords using bcrypt ? 
+
+Q74. What is a database seeder ? 
+- Allows user to easily import some sample data
+
+Q75. How to run seeder js file ?
+- Go to root folder type in:
+"node backend/seeder"      - Used for import data
+"node backend/seeder -d"      - Used for destroying data
+Or you can put in npm  by:
+- modify package.json to be: 
+  "scripts": {
+    "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node backend/seeder",
+    "data:destroy": "node backend/seeder -d"
+  },
+
+Q76. What is express-async-handler  middleware ? 
+- Simple middleware for handling exceptions inside of async express routes
+and passing them to express error handling
+
+77. How to install express-async-handler ?
+Go to root folder, type in:
+npm i express-async-handler
+
+Q78. What is middleware in react ? 
+- Middleware is function that access to request response cycle
+
+79. How to use your middleware ?
+- You have to use:
+app.use((req,res, next) => {})
+
+Q80. What to move from one middleware to another ?
+- You have to use the 'next' in the (req,res, next) => {}
+
+81. The Models in the model folder... they are the key values which goes into the Database
+i.e Users has name, email, password, isAdmin as keys.. Hence all values which goes into users needss to have these properties
+- The schema defines what type of values it is expecting (i.e String, Number, Boolean, etc)
+
+82. Middleware just allows to keep track of different error handling
+
+::::: Redux
+Q83. What is Redux  ? 
+- library which allows JS applications to manage application state
+
+Q84. What is state in Redux ?
+
+Q85. What is component level state ?
+- deals with components (ex: header, footer, screens, dropdown, menu)
+
+Q86. What is global level state .. aka applicate state ?
+- Redux for application state 
+- Use Redux for products, authentication state, shopping cart items ..etc
+
+Q86. What is Redux Pattern ?
+
+
+Q87. What is Reducers ?
+- Functions that take in actions and pass state to components
+- Takes in initial state and action. 
+- Returns that specific part of the global store
+
+Q88. What are actions ?
+- Actions are objects to change a piece of state
+- An object containing a:
+1. Type
+2. Payload
+- Used to tell the reducer how to update the store 
+
+Q89. What are action creators ?
+- Function that takes in payload and creates an action object
+
+90. Think of state as cloud hovering your application and when we need somethign to happen,
+we need to create 
+
+91. Make sure to install Redux DevTools
+
+92. How to install redux ?
+- Go to frontend folder and type:
+npm i redux react-redux redux-thunk
+
+Q93. What is react-reduxt ? 
+- Redux for react
+> Why do we need this ? it allows react to work with redux
+
+Q94. What is react-thunk ?
+- Middle ware
+- Allows to make async request in action creators, since we need to communicate to servers
+
+Q95. What is redux-devtools-extension ?
+- redux-devtools dont work on their own
+- this extension allows it work
+
+Q96. What is Provider ?
+- A component from react-redux 
+- Wraps our app component and allows each child component to be connected to the store
+
+Q97. What is arrow function in JS ? 
+
+Q98. There is a pattrn here. We create
+1. Constant
+2. Reducers
+3. Actions
+4. Fire off in Component
+
+99. What is combineReducers ? 
+- Function that allows user to put together All reducers into a Single Object (aka. Root Reducer)
+
+100. What is a store/global state ? 
+- An object
+- Think of it as mega state that is accessed and updated with its own functions
+
+101. What is createStore () ?
+- Function from redux that uses rootReducer to create the store 
+
+102. What is dispatch ? 
+- Function from redux
+- Sends an action object to its reducer
+
+103. What is mapStatetoProps ?
+- a Function
+- Function we creaet that takes in global state objects and returns an object to be added 
+to a component as part of its props object
+
+104. What is mapDispatchToProps ? 
+- A function
+- Function we create that takes in dispatch and returns an object to be added to a component as part 
+of its props object
+- Allows component to update data in store
+
+105. What is connect ? 
+- Function from react-redux
+- Allows us to connect to a component to the store by adding items from the store to our component props
+- and adding dispatch to our component properties
+
+106. What is container ?
+- Component that has been connected to the store
+
+107. Flow
+You          Put Stuff into small tube              Tube        Teller                    Computer
+Component -> Action Creator  -> Creates Action ->  Dispatch -> Reducer -> Root Reducer -> Store -> Do something (Change State...etc)
+            (Create Actions)  (Has Type + Payload)                       (Returns State)
+              
+Q108. What is useEffect() ?
+- hook
+- Tells react that your component needs to do something AFTER rendering
+- React will remember the function you passed and call it later after performing DOM Updates
+
+Q109. What is variant ? 
+
+Q110. What is useState() ?
+Q111. What is history ?
+Ex: history.push(`/cart/${match.params.id}?qty=${qty}`)
+- Used to redirect
+
+Q112. What is the question mark after :id in 
+<Route path='/product/:id?' ?
+- Routes it so that id is NOT mandatory to be in the URI 
+
+Q113. How to save entire cart to LocalStorage ? 
+-   localStorage.setItem('cartItems', getState().cart.cartItems)
+
+Q114. What is useSelector() ? 
+Ex:  const cart = useSelector((state) => state.cart)
+ 
+Q115. Where are these parameters coming from ? 
+Ex: 
+const CartScreen = ({ match, location, history }) => {
+const ProductScreen = ({ history, match }) => {
+
+115B. Flow is
+User <=> Request <=> Routes <=> Controllers <=> Response to the request sent back to user
+  
+Q116. What are controllers ?
+- Controls request logic
+- Coordinateds between View and Model
+- Responsible for controllowing the flow of the application execution
+- Every request going into app goes into Controllers and returns a response to the request
+- Can perform different types of action 
+
+117. Routes should point to Controller methods
+
+118. Authentication Request Flow
+Postman > Post request > Server.js routes  > UserController (Does the Authenticaiton)
+
+Q119. What is JWT ? 
+- JSON web token
+- For authorization after authentication
+- Authentication will authorize a user to log into website using secret key called JWT
+- Consist of three different parts:
+1. Header
+2. Payload - Ex: Username, id (Note: Do not put passwords here)
+3. Verify Signature - Verifies nothing has been modified and verifies user is actually them
+
+Q120. What is Bearer Token ?
+Q121. What is node-jsonwebtoken ? 
+
+Q122. How to install json webtoken ?
+- npm i jsonwebtoken
+
+Q123. How to generate a JSON WebToken ? 
+import jwt from 'jsonwebtoken'
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: '30d',
+  })
+}
+
+Q124: How to decode a JSON WebToken
+- Take the token from Postman for logging in
+Ex: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZDE3NTc1NjY1ZGRjNDBjNDNlZTVjNiIsImlhdCI6MTYwODA4NTM3NiwiZXhwIjoxNjEwNjc3Mzc2fQ.7lxQ7c9mY3j0VArtu35Epx07TTCXJbuRpF1HDwaNZlw"
+- Go to JWT.io
+- Paste token into "Encoded"
+- You can see the header, payload, signature 
+
+Q125. What is next in middleware ? 
+Ex: const protect = async(req, res, next) => {}
+
+Q126. what does next() do ?
+
+Q127. What is salt on bcryt ?
+
+Q128. What is useDispatch ?
+Q129. What is useSelector ? 
+
+Bug130. Found a bug, when the user registers, logouts and clicks on "Register" again on 
+Login screen, we get directed to the home page instead of the registration screen ...
+
+Q131. What is redirect & redirect value ? 
+
+Q132. Why does Authorization dont need a quotation marks ? 
+Ex: 
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${}`               
+      },
+    }
+
+Q134. Why do we need to call e.preventDefault()  on eventHandler since its a form ?
+
+Q135. How to move from one page to another ?
+- use history.push()
+
+Q136. What is LinkContainer ? 
+
+Q137. This line disables the lint ?
+// eslint-disable-next-line
+
+Q138. Once user submits payment to Paypal, paypal will send back some data to confirm the payment was successful
+
+Q139. PaymentResult comes from paypal:
+Ex: export const payOrder = (order, paymentResult) => async (dispatch, getState) => {}
+
+Q140. How to log into Paypal developer account ?
+- Go to: developer.paypal.com/developer/applications
+
+150. You will need to create two accounts
+1 x business account
+1 x personal account
+
+151. How to create an app on paypal
+- Go to Dashboard and click on "Create App"
+- Copy Client ID and copy of .env file 
+
+152. In order to implement paypal, we will to include script
+"Paypal JS SDK Script"
+- Include this script:
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"></script>
+
+Note: We need to build this script dynamically from useEffect
+
+Q153. How to rename arguments ?
+const { loading: loadingPay, success: successPay, error } = orderPay
+
+Q154. Why do we need to use react-paypal-button-v2 ? 
+
+155. Makesure to install paypal button on FrontEnd
+
+156. How to install react-paypal-button-v2 ?
+- Go to frontend
+- npm i react-paypal-button-v2
+
+::: Admin 
+ 
+157. This line get(protect, admin, getUsers). Will first go to protect(), then go to admin() then go to getUsers()
+How it does this is by callin in the next() function 
+
+158. How to send products back to the DB using the seeder ?
+- Run this root folder
+npm run data:import
+
+160. How does the server handle file upload ?
+- Use Multer 
+
+161. What is Multer ? 
+- Middlewaer for handling multipart/form-data
+- Used for uploading files
+
+162. How to install Multer ? 
+- Go to root and type in:
+
+163. What does path do ?
+Ex: path.extname()
+
+Q164. What is the mimetype ? 
+
+Q165. YOu need to make the uploads folder static so you user can upload images to that folder
+
+Q166. How to make a folder static in expresS ? 
+- Use path.join()
+
+167. path.join(__dirname, '/uploads') takes you the folder
+
+::: Product Reviews, Search and More
+
+Q168. What is morgan ?
+- logger middleware
+- When someone hits a route in the backend, we can seee it logged in the console
+- See the HTTP, status code ...etc
+
+169. How to install morgan ?
+- Go root:
+npm i morgan

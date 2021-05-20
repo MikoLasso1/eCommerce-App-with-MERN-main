@@ -1,1 +1,1 @@
-# eCommerce-App-with-MERN-main
+# MERN_eCommerceApp
